@@ -26,4 +26,12 @@ public class AddressService extends ServiceImpl<AddressMapper, Address> implemen
     public List<Address> findAll() {
         return mapper.selectList(null);
     }
+
+    @Override
+    public List<String> selectCoinName() {
+        return mapper.selectCoinName();
+    }
+
+
+
 }

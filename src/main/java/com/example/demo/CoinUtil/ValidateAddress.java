@@ -4,21 +4,28 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class ValidateAddress {
 
     public static String getValidAddress(String address) throws InterruptedException {
-        WebDriver driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("headless");
+        options.addArguments("disable-gpu");
+        WebDriver driver = new ChromeDriver(options);
+
         driver.get("https://app.zerion.io/connect-wallet");
-        Thread.sleep(7000);
+        driver.manage().timeouts().implicitlyWait(15L, TimeUnit.SECONDS);
         driver.findElement(By.id("track-asset-input")).sendKeys(address);
-        Thread.sleep(2000);
+
         driver.findElement(By.className("InlineForm__CenterContent-sc-1b3rprz-1")).click();
-        Thread.sleep(9000);
+
         String text=null;
         try {
             text = driver.findElement(By.className("Modal__BodyText-sc-1eqklat-4")).getText();

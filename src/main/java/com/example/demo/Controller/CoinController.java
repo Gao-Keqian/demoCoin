@@ -55,9 +55,16 @@ public class CoinController {
     @RequestMapping("/getAddress")
     public String getAddress() throws InterruptedException {
         List<CoinName> coins = nameService.findAll();
+        List<String> coinNames = addressService.selectCoinName();
+        Set<String> set=new HashSet<>(coinNames);
+
+
         int i = 0;
         List<String> list=new ArrayList<>();
         for (CoinName coin : coins) {
+            if(set.contains(coin.getName())){
+                continue;
+            }
             i++;
 
             System.out.println("当前为第"+i+"个");
@@ -103,10 +110,10 @@ public class CoinController {
             if(map.get(s)<=5){
                 continue;
             }
-            AddressCount2 addressCount = new AddressCount2();
+            AddressCount addressCount = new AddressCount();
             addressCount.setAddress(s);
             addressCount.setCount(map.get(s));
-            addressCount2Service.saveAddressCount(addressCount);
+            addressCountService.saveAddressCount(addressCount);
         }
         return "Successs";
     }
@@ -114,8 +121,8 @@ public class CoinController {
 
     @RequestMapping("/valid")
     public String validateAddress() throws InterruptedException {
-        List<AddressCount2> addresses = addressCount2Service.findAddressByCount(6);
-        for (AddressCount2 address : addresses) {
+        List<AddressCount> addresses = addressCountService.findAddressByCount(6);
+        for (AddressCount address : addresses) {
             if (address.getValid() != null) {
                 continue;
             }
@@ -126,7 +133,7 @@ public class CoinController {
             } else {
                 address.setValid("T");
             }
-            addressCount2Service.updateAddressCount(address);
+            addressCountService.updateAddressCount(address);
         }
         return "Successs";
     }

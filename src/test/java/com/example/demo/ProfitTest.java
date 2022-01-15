@@ -5,10 +5,7 @@ import com.example.demo.CsvUtil.CsvReaderUtil;
 import com.example.demo.CsvUtil.DateUtil;
 import com.example.demo.CsvUtil.FileReaderUtil;
 import com.example.demo.Dao.*;
-import com.example.demo.Service.IAddressCount2Service;
-import com.example.demo.Service.IAddressCountService;
-import com.example.demo.Service.ICoinService;
-import com.example.demo.Service.IProfitService;
+import com.example.demo.Service.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +36,9 @@ public class ProfitTest {
 
     @Autowired
     IAddressCountService addressCountService;
+
+    @Autowired
+    IAddressService addressService;
 
     @Test
     public void CalculateProfit() throws IOException {

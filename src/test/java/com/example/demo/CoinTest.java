@@ -214,12 +214,12 @@ public class CoinTest {
 
     @Test
     public void compareAddress1AndAddress2() {
-        List<AddressCount2> addressByCount = addressCount2Service.findAddressByCount(6);
-        for (AddressCount2 addressCount : addressByCount) {
-            AddressCount address = addressCountService.findAddress(addressCount.getAddress());
+        List<AddressCount> addressByCount = addressCountService.findAddressByCount(6);
+        for (AddressCount addressCount : addressByCount) {
+            AddressCount2 address = addressCount2Service.findAddress(addressCount.getAddress());
             if (address != null && address.getValid() != null) {
                 addressCount.setValid(address.getValid());
-                addressCount2Service.updateAddressCount(addressCount);
+                addressCountService.updateAddressCount(addressCount);
             }
         }
 
