@@ -175,10 +175,7 @@ public class CoinController {
     public String downloadTransactionHistoryCsv() throws InterruptedException {
         List<AddressCount> addresses = addressCountService.findAddressByCountAndValid(5);
         for (AddressCount address : addresses) {
-            boolean res = DownloadSpider.download(address.getAddress());
-            if (!res) {
-                addressCountService.updateAddressCount(address);
-            }
+            DownloadSpider.download(address.getAddress());
         }
         return "Successful";
     }

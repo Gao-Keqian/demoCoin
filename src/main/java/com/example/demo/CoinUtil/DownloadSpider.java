@@ -5,10 +5,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class DownloadSpider {
@@ -17,17 +19,19 @@ public class DownloadSpider {
     IAddressCountService addressCountService;
 
     public static boolean download(String address) throws InterruptedException {
-        WebDriver driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+//        options.addArguments("headless");
+//        options.addArguments("disable-gpu");
+        WebDriver driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(20L, TimeUnit.SECONDS);
         driver.get("https://app.zerion.io/" + address + "/history");
-        Thread.sleep(20000);
         boolean res=true;
         try {
             driver.findElement(By.xpath("//*[@id='PageWrapper']/div/div[5]/div[1]/div[2]/div/button[1]")).click();
         }catch (Exception e){
             res=false;
         }
-
-        Thread.sleep(20000);
+        Thread.sleep(7000);
 
         driver.close();
         driver.quit();

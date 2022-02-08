@@ -49,7 +49,7 @@ public class ProfitTest {
         set.add("WBTC");
         set.add("USDC");
         for (String file : readfiles) {
-            Map<String, Profit> map = CsvReaderUtil.readCsvForProfit(file, set, -15, -2);
+            Map<String, Profit> map = CsvReaderUtil.readCsvForProfit(file, set, -14, -1);
             Set<String> keySet = map.keySet();
             for (String key : keySet) {
                 Profit profit = map.get(key);
@@ -80,6 +80,10 @@ public class ProfitTest {
                     size--;
                     continue;
                 }
+                if(address.getAddress().equals("0xdf86bfe6cf00bf615b0ff0b83ed7b58d21edf331")&&profit.getCoin().equals("OCT")){
+                    System.out.println(1);
+                }
+
                 BigDecimal coinProfit = CalculateCoinProfit(profit);
                 if (coinProfit.compareTo(new BigDecimal(-1)) == 0) {
                     size--;

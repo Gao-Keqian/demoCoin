@@ -128,7 +128,7 @@ public class CsvReaderUtil {
                 Date date = DateUtil.StringToDate(split[0]);
                 Date previousDate = DateUtil.getPreviousDate(num);
                 if (DateUtils.isSameDay(date, previousDate)) {
-                    if ("NORD".equals(currency) || "BZNT".equals(currency) || "NANJ".equals(currency)) {
+                    if ("ROUTE".equals(currency) ) {
                         return true;
                     }
                 } else if (date.compareTo(previousDate) < 0) {

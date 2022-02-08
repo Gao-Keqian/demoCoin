@@ -104,17 +104,13 @@ public class CoinTest {
     @Test
     public void findMissedFiles() throws IOException, InterruptedException {
         Set<String> readfiles = FileReaderUtil.readfileName("F:\\csv folder");
-        List<AddressCount2> addressCount2s = addressCount2Service.findAddressByCountAndValid(9);
+        List<AddressCount> addressCount2s = addressCountService.findAddressByCountAndValid(5);
 
-        for (AddressCount2 address : addressCount2s) {
+        for (AddressCount address : addressCount2s) {
             if (readfiles.contains(address.getAddress())) {
                 continue;
             }
-            boolean res = DownloadSpider.download(address.getAddress());
-            if (!res) {
-                address.setHighLight("F");
-                addressCount2Service.updateAddressCount(address);
-            }
+            DownloadSpider.download(address.getAddress());
         }
     }
 
@@ -128,9 +124,7 @@ public class CoinTest {
                 if (CsvReaderUtil.findCsv(file, i)) {
                     if(!set.contains(file)){
                         System.out.println(file);
-
                     }
-
                     set.add(file);
                 }
                 ;
