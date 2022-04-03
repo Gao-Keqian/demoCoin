@@ -259,7 +259,7 @@ public class CsvReaderUtil {
                     } else {
                         currency = split[7];
 
-                        if ("".equals(split[9]) || split[9] == null || coinSet.contains(currency)) {
+                        if ("".equals(split[9]) || split[9] == null || coinSet.contains(currency)||currency.contains(" ")) {
                             continue;
                         }
 

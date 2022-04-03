@@ -27,7 +27,7 @@ public class DownloadSpider {
         driver.get("https://app.zerion.io/" + address + "/history");
         boolean res=true;
         try {
-            driver.findElement(By.xpath("//*[@id='PageWrapper']/div/div[5]/div[1]/div[2]/div/button[1]")).click();
+            driver.findElement(By.xpath("//*[@id='PageWrapper']/div/div[3]/div[2]/div[1]/div[2]/div/button[1]")).click();
         }catch (Exception e){
             res=false;
         }

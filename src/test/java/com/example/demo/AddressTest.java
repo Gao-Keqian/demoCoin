@@ -27,6 +27,7 @@ public class AddressTest {
     @Autowired
     IRealAddressService realAddressService;
 
+    //将有效地址储存到real address
     @Test
     public void saveValidAddress(){
         List<AddressCount2> addresses1 = addressCount2Service.findAddressByCountAndValid(6);
@@ -41,9 +42,11 @@ public class AddressTest {
         }
     }
 
+
+    //用real address去校验新地址
     @Test
     public void validAddress(){
-        List<AddressCount> addressByCount = addressCountService.findAddressByCount(6);
+        List<AddressCount> addressByCount = addressCountService.findAddressByCount(0);
         for (AddressCount addressCount : addressByCount) {
             if(addressCount.getValid()==null||addressCount.getValid().equals("")){
                 RealAddress address1 = realAddressService.findAddress(addressCount.getAddress());

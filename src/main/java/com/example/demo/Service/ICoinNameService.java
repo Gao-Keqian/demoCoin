@@ -10,4 +10,6 @@ public interface ICoinNameService {
 
     public List<CoinName> findAll();
 
+    public void saveCoinName(CoinName coinName);
+
 }

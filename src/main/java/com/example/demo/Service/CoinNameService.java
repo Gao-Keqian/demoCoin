@@ -23,4 +23,10 @@ public class CoinNameService extends ServiceImpl<CoinNameMapper, CoinName> imple
         return mapper.selectList(null);
     }
 
+    @Override
+    public void saveCoinName(CoinName coinName) {
+        mapper.insert(coinName);
+    }
+
+
 }
